@@ -1,0 +1,16 @@
+package com.aditya.demodata.daos.DepartmentDAO;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+import com.aditya.demodata.models.Department.Department;
+
+@Repository
+public interface DepartmentDAO extends CrudRepository<Department, Integer>{
+        
+    @Query("select d from Department d")
+    public List<Department> findAll();
+}

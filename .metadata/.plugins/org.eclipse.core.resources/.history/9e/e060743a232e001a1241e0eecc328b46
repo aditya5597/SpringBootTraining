@@ -1,0 +1,5 @@
+package com.aditya.demodata.models.Department;
+
+public class Department {
+
+}

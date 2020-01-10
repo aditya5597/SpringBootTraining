@@ -1,0 +1,5 @@
+package com.aditya.demo.controller;
+
+public class HelloController {
+
+}

@@ -1,0 +1,13 @@
+package com.aditya.city;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class FindCityServiceApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(FindCityServiceApplication.class, args);
+	}
+
+}

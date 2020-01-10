@@ -1,0 +1,5 @@
+package com.aditya.demodata.controller;
+
+public class DepartmentController {
+
+}

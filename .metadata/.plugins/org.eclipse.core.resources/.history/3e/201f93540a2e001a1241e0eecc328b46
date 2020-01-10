@@ -1,0 +1,50 @@
+package com.aditya.demof.controllers;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.aditya.demof.daos.ProductRepository;
+import com.aditya.demof.models.Product;
+
+@RestController
+@RequestMapping(value = "/products")
+public class ProductController {
+
+	@Autowired
+	private ProductRepository productRepo;
+
+	@GetMapping(value = "/find/{id}", produces = { "application/json", "application/xml" })
+	public Product find(@PathVariable("id") Integer id) {
+		return productRepo.findById(id);
+	}
+
+	@PostMapping(value = "/save", consumes = "application/json")
+	public ResponseEntity<String> save(@RequestBody Product product) {
+		try {
+			productRepo.save(product);
+			return new ResponseEntity<>("Saved !", HttpStatus.CREATED);
+		} catch (RuntimeException ex) {
+			System.out.println(ex.getMessage());
+			return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	@DeleteMapping(value = "/delete")
+	public ResponseEntity<String> delete(@PathVariable("id")Integer id ) {
+		try {
+			productRepo.delete(id);
+			return new ResponseEntity<>("Deleted !", HttpStatus.CREATED);
+		} catch (RuntimeException ex) {
+			System.out.println(ex.getMessage());
+			return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+	}
+}
