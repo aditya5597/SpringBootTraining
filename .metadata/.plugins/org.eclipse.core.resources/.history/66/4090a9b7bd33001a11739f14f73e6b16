@@ -1,0 +1,5 @@
+package com.amazonaws.demo;
+
+public class S3CRUDdemo {
+
+}
